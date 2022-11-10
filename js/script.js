@@ -49,7 +49,7 @@ function initRatings() {
             });
             ratingItem.addEventListener('mouseleave', function (e) {
                 //Обновление активных звёзд
-                setRatingActiveWidth(ratingItem.value);
+                setRatingActiveWidth();
             });
             ratingItem.addEventListener('click', function (e) {
                 //Обновление переменных
@@ -57,7 +57,7 @@ function initRatings() {
 
                 if (rating.dataset.ajax) {
                     //"Отправить" на сервер
-                    setRatingValue(rating.value, rating);
+                    setRatingValue(ratingItem.value, rating);
                 } else {
                     //Отобразить указанную оценку
                     ratingValue.innerHTML = index + 1;
@@ -66,5 +66,41 @@ function initRatings() {
 
             });
         }
+    }
+    async function setRatingValue(value, rating) {
+        if (!rating.classList.contains('rating_sending')) {
+            rating.classList.add('rating_sending');
+
+            //Отправка данных (value) на сервер
+            let response =await fetch('rating.json', {
+                method: 'GET',
+
+                // body: JSON.stringify({
+                //     userRating: value
+                // }),
+                // headers: {
+                //     'content-type': 'application/json'
+                // }
+
+            });
+            if (response.ok) {
+                const result = await response.json();
+
+                //Получаем новый рейтинг
+                const newRating = result.newRating;
+
+                //Вывод нового среднего результата
+                ratingValue.innerHTML = newRating;
+
+                //Обновление активных звёзд
+                setRatingActiveWidth();
+
+                rating.classList.remove('rating_sending');            
+            }else {
+                alert("Error!");
+
+                rating.classList.remove('rating_sending'); 
+            }
+        } 
     }
 }

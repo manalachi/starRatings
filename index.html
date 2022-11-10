@@ -54,7 +54,20 @@
             <button type="submit" class="form__btn btn">Отправить</button>
         </form>
         <div class="form">
-
+            <div class="form__label">Точный рейтинг (JS + AJAX):</div>
+                <div data-ajax="true" class="rating rating_set">
+                    <div class="rating__body">
+                        <div class="rating__active"></div>
+                        <div class="rating__items">
+                            <input type="radio" name="rating" value="1" class="rating__item">
+                            <input type="radio" name="rating" value="2" class="rating__item">
+                            <input type="radio" name="rating" value="3" class="rating__item">
+                            <input type="radio" name="rating" value="4" class="rating__item">
+                            <input type="radio" name="rating" value="5" class="rating__item">
+                        </div>
+                    </div>
+                    <div class="rating__value">1.6</div>
+                </div>
         </div>
     </div>
     <script src="js/script.js"></script>

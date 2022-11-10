@@ -146,6 +146,15 @@ h1 {
     align-items: flex-end;
     font-size: 40px;
     line-height: 0.75;
+    transition: opacity .3s ease 0s;
+}
+
+.rating.rating_sending {
+    opacity: 0.2;
+}
+.rating.rating_set .rating__active,
+.rating.rating_set .rating__item {
+    cursor: pointer;
 }
 
 .rating__body {

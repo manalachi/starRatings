@@ -22,7 +22,7 @@ function initRatings() {
         setRatingActiveWidth();
 
         if (rating.classList.contains('rating_set')) {
-            setRatingActiveWidth(rating);
+            setRating(rating);
         }
     }
 
@@ -41,17 +41,17 @@ function initRatings() {
         const ratingItems = rating.querySelectorAll('.rating__item');
         for (let index = 0; index < ratingItems.length; index++) {
             const ratingItem = ratingItems[index];
-            ratingItem.addEvenListener('mouseenter', function (e) {
+            ratingItem.addEventListener('mouseenter', function (e) {
                 //Обновление переменных
                 initRatingVars(rating);
                 //Обновление активных звёзд
                 setRatingActiveWidth(ratingItem.value);
             });
-            ratingItem.addEvenListener('mouseleave', function (e) {
+            ratingItem.addEventListener('mouseleave', function (e) {
                 //Обновление активных звёзд
                 setRatingActiveWidth(ratingItem.value);
             });
-            ratingItem.addEvenListener('click', function (e) {
+            ratingItem.addEventListener('click', function (e) {
                 //Обновление переменных
                 initRatingVars(rating);
 
